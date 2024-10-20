@@ -10,12 +10,14 @@ class MockNumberTriviaRepository extends Mock
 void main() {
   late GetConcreteNumberTrivia usecase;
   late MockNumberTriviaRepository mockNumberTriviaRepository;
+
   setUp(() {
     // モックのRepositoryのインスタンス化
     mockNumberTriviaRepository = MockNumberTriviaRepository();
     // usecaseにdependency injection
     usecase = GetConcreteNumberTrivia(mockNumberTriviaRepository);
   });
+
   tearDown(() {
     reset(mockNumberTriviaRepository);
   });
@@ -29,8 +31,10 @@ void main() {
       // arrange
       when(() => mockNumberTriviaRepository.getConcreteNumberTrivia(any()))
           .thenAnswer((_) async => const Right(tNumberTrivia));
+
       // act
       final result = await usecase(const Params(number: tNumber));
+
       // assert
       expect(result, const Right(tNumberTrivia));
       verify(() => mockNumberTriviaRepository.getConcreteNumberTrivia(tNumber));
