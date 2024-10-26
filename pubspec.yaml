@@ -50,6 +50,16 @@ dependencies:
   shared_preferences:
   mocktail: ^1.0.4
   internet_connection_checker_plus: ^2.5.2
+  riverpod: ^2.5.1
+  riverpod_lint: ^2.3.13
+  riverpod_annotation: ^2.3.5
+  riverpod_generator: ^2.4.3
+  freezed_annotation: ^2.4.4
+  freezed: ^2.5.7
+  build_runner: ^2.4.13
+  json_serializable: ^6.8.0
+  json_annotation: ^4.9.0
+  flutter_riverpod: ^2.5.1
 
 
 dev_dependencies:
