@@ -8,9 +8,11 @@ import 'package:number_trivia/features/number_trivia/domain/usecases/get_random_
 
 class MockNumberTriviaRepository extends Mock
     implements NumberTriviaRepository {}
+
 void main() {
   late GetRandomNumberTrivia usecase;
   late MockNumberTriviaRepository mockNumberTriviaRepository;
+
   setUp(() {
     // モックのRepositoryのインスタンス化
     mockNumberTriviaRepository = MockNumberTriviaRepository();

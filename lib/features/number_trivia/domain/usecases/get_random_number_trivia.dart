@@ -13,5 +13,4 @@ class GetRandomNumberTrivia implements Usecase<NumberTrivia, NoParams> {
   Future<Either<Failure, NumberTrivia>> call(NoParams params) async {
     return await repository.getRandomNumberTrivia();
   }
-
 }
