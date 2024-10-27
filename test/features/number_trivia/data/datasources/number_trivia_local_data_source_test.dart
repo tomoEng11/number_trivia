@@ -6,7 +6,6 @@ import 'package:mocktail/mocktail.dart';
 import 'package:number_trivia/core/error/exception.dart';
 import 'package:number_trivia/features/number_trivia/data/datasources/number_trivia_local_data_source.dart';
 import 'package:number_trivia/features/number_trivia/data/models/number_trivia_model.dart';
-import 'package:number_trivia/features/number_trivia/domain/entities/number_trivia.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
@@ -56,7 +55,7 @@ void main() {
   });
 
   group('cacheNumberTrivia', () {
-    final tNumberTriviaModel =
+    const tNumberTriviaModel =
     NumberTriviaModel(number: 1, text: 'test trivia');
 
     test('should call SharedPreferences to cache the data', () async {

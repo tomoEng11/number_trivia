@@ -2,7 +2,6 @@
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:number_trivia/core/error/failure.dart';
 import 'package:number_trivia/core/network/network_info.dart';
 
 class MockInternetConnectionChecker extends Mock implements InternetConnection {}
@@ -13,7 +12,7 @@ void main() {
 
   setUp(() {
     mockInternetConnectionChecker = MockInternetConnectionChecker();
-    networkInfo = NetworkInfoImpl(mockInternetConnectionChecker);
+    networkInfo = NetworkInfoImpl(connectionChecker: mockInternetConnectionChecker);
   });
 
   group('isConnected', () {

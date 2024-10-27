@@ -60,10 +60,10 @@ void main() {
     });
   }
 
-  final tNumber = 1;
-  final tNumberTriviaModel =
+  const tNumber = 1;
+  const tNumberTriviaModel =
   NumberTriviaModel(number: tNumber, text: 'test trivia');
-  final NumberTrivia tNumberTrivia = tNumberTriviaModel;
+  const NumberTrivia tNumberTrivia = tNumberTriviaModel;
 
   group('getConcreteNumberTrivia', () {
     test(
@@ -99,7 +99,7 @@ void main() {
         // assert
         verify(() => mockRemoteDataSource.getConcreteNumberTrivia(tNumber));
         // TODO entityと比較してる理由確認
-        expect(result, Right(tNumberTrivia));
+        expect(result, const Right(tNumberTrivia));
       },
     );
 
@@ -149,7 +149,7 @@ void main() {
         verifyZeroInteractions(mockRemoteDataSource);
         verify(() => mockLocalDataSource.getLastNumberTrivia());
         // TODO entityと比較してる理由調べる
-        expect(result, Right(tNumberTrivia));
+        expect(result, const Right(tNumberTrivia));
       },
     );
 

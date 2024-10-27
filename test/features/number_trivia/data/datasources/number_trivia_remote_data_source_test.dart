@@ -74,7 +74,7 @@ void main() {
         // act
         final call = dataSource.getConcreteNumberTrivia;
         // assert
-        expect(() => call(tNumber), throwsA(TypeMatcher<ServerException>()));
+        expect(() => call(tNumber), throwsA(const TypeMatcher<ServerException>()));
       },
     );
 
@@ -119,7 +119,7 @@ void main() {
           // act
           final call = dataSource.getRandomNumberTrivia;
           // assert
-          expect(() => call(), throwsA(TypeMatcher<ServerException>()));
+          expect(() => call(), throwsA(const TypeMatcher<ServerException>()));
         },
       );
     });
