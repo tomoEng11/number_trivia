@@ -12,45 +12,45 @@ import '../../domain/usecases/get_concrete_number_trivia.dart';
 import '../../domain/usecases/get_random_number_trivia.dart';
 
 // Shared Preferences(local)
-final sharedPreferencesProvider = FutureProvider<SharedPreferences>((ref) async {
+final sharedPreferencesProvider = FutureProvider<SharedPreferences>((_) async {
   final sharedPreferences = await SharedPreferences.getInstance();
   return sharedPreferences;
 });
 
 // http(remote)
-final httpClientProvider = Provider<http.Client>((ref) => http.Client());
+final httpClientProvider = Provider<http.Client>((_) => http.Client());
 
 // NetworkInfo
-final networkInfoProvider = Provider<NetworkInfo>((ref) => NetworkInfoImpl(connectionChecker: InternetConnection.createInstance()));
+final networkInfoProvider = Provider<NetworkInfo>((_) => NetworkInfoImpl(connectionChecker: InternetConnection.createInstance()));
 
 // RemoteDataSource
 final numberTriviaRemoteDataSourceProvider = Provider<NumberTriviaRemoteDataSource>((ref) {
-  final client = ref.watch(httpClientProvider);
+  final client = ref.read(httpClientProvider);
   return NumberTriviaRemoteDataSourceImpl(client: client);
 });
 
 // LocalDataSource
 final numberTriviaLocalDataSourceProvider = FutureProvider<NumberTriviaLocalDataSource>((ref) async {
-  final sharedPreferences = await ref.watch(sharedPreferencesProvider.future); // .futureを使ってawaitする
+  final sharedPreferences = await ref.read(sharedPreferencesProvider.future); // .futureを使ってawaitする
   return NumberTriviaLocalDataSourceImp(sharedPreferences: sharedPreferences);
 });
 
 // Repository
 final numberTriviaRepositoryProvider = FutureProvider<NumberTriviaRepository>((ref) async {
-  final remoteDataSource = ref.watch(numberTriviaRemoteDataSourceProvider);
-  final localDataSource = await ref.watch(numberTriviaLocalDataSourceProvider.future);
-  final networkInfo = ref.watch(networkInfoProvider);
+  final remoteDataSource = ref.read(numberTriviaRemoteDataSourceProvider);
+  final localDataSource = await ref.read(numberTriviaLocalDataSourceProvider.future);
+  final networkInfo = ref.read(networkInfoProvider);
   return NumberTriviaRepositoryImpl(remoteDataSource: remoteDataSource, localDataSource: localDataSource, networkInfo: networkInfo);
 });
 
 // UseCase
 final getConcreteNumberTriviaProvider = FutureProvider<GetConcreteNumberTrivia>((ref) async {
-  final repository = await ref.watch(numberTriviaRepositoryProvider.future);
-  return GetConcreteNumberTrivia(repository);
+  final repository = await ref.read(numberTriviaRepositoryProvider.future);
+  return GetConcreteNumberTrivia(repository);;;;;
 });
 
 final getRandomNumberTriviaProvider = FutureProvider<GetRandomNumberTrivia>((ref) async {
-  final repository = await ref.watch(numberTriviaRepositoryProvider.future);
+  final repository = await ref.read(numberTriviaRepositoryProvider.future);
   return GetRandomNumberTrivia(repository);
 });
 

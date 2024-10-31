@@ -37,7 +37,5 @@ class NumberTriviaLocalDataSourceImp implements NumberTriviaLocalDataSource {
     } else {
       throw CacheException();
     }
-
   }
-  
 }
